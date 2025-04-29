@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Radar Aedes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            margin: 30px 0;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+               <p><div class="container">
+            <h1>Combate à Dengue</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sintomas.html">Sintomas</a></li>
+                    <li><a href="prevencao.html" class="active">Prevenção</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="radar-aedes.html" class="ativo">Radar Aedes</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container"><section class="info">
+            <div class="container">
+                <h2>Radar Aedes</h2>
+                 <p>Fique por dentro dos casos de dengue em Feira de Santana e região. Acompanhe as atualizações e ajude no combate à doença.</p>
+
+            <div id="map"></div>
+        </section>
+
+<section id="notificar-focos">
+    <h2>📞 Como Notificar Focos de Dengue</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Município</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>WhatsApp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Feira de Santana</td>
+                <td><a href="tel:+557536126610">(75) 3612-6610</a></td>
+                <td><a href="mailto:vigilanciaepidemiologica@feiradesantana.ba.gov.br">vigilanciaepidemiologica@feiradesantana.ba.gov.br</a></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Conceição do Coité</td>
+                <td><a href="tel:+557532622150">(75) 3262-2150</a></td>
+                <td><a href="mailto:semusa@conceicaodocoite.ba.gov.br">semusa@conceicaodocoite.ba.gov.br</a></td>
+                <td><a href="https://wa.me/5575991622157">(75) 99162-2157</a></td>
+            </tr>
+            <tr>
+                <td>Irará</td>
+                <td><a href="tel:+557532473800">(75) 3247-3800</a></td>
+                <td><a href="mailto:prefeitura@irara.ba.gov.br">prefeitura@irara.ba.gov.br</a></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Riachão do Jacuípe</td>
+                <td><a href="tel:+557532642762">(75) 3264-2762 (WhatsApp)</a></td>
+                <td><a href="mailto:contato@riachaodojacuipe.ba.gov.br">contato@riachaodojacuipe.ba.gov.br</a></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Santo Estêvão</td>
+                <td><a href="tel:+5575991622157">(75) 99162-2157</a></td>
+                <td><a href="mailto:segov@santoestevao.ba.gov.br">segov@santoestevano.ba.gov.br</a></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Santa Bárbara</td>
+                <td><a href="tel:+557532362600">(75) 3236-2600</a></td>
+                <td><a href="mailto:gabinete@santabarbara.ba.gov.br">gabinete@santabarbara.ba.gov.br</a></td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    td a {
+        color: #1e90ff;
+        text-decoration: none;
+    }
+    td a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+  
+    </main>
+
+    <script>
+        var map = L.map('map').setView([-12.2667, -38.9667], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap',
+            maxZoom: 18
+        }).addTo(map);
+
+        var cidades = [
+            { nome: "Feira de Santana", coords: [-12.2667, -38.9667], casos: 6651 },
+            { nome: "São Gonçalo dos Campos", coords: [-12.4336, -38.9639], casos: 423 },
+            { nome: "Humildes", coords: [-12.4661, -39.0414], casos: 187 },
+            { nome: "Irará", coords: [-12.0525, -38.7686], casos: 312 },
+            { nome: "Conceição do Coité", coords: [-11.5600, -39.2833], casos: 70 },
+            { nome: "Santa Bárbara", coords: [-11.9514, -38.9653], casos: 48 },
+            { nome: "Riachão do Jacuípe", coords: [-11.8061, -39.3853], casos: 97 },
+            { nome: "Santo Estêvão", coords: [-12.4319, -39.2506], casos: 142 }
+        ];
+
+        cidades.forEach(function(cidade) {
+            L.marker(cidade.coords)
+                .addTo(map)
+                .bindPopup("<b>" + cidade.nome + "</b><br>Casos confirmados: " + cidade.casos);
+        });
+    </script>
+
+</body>
+</html>
+

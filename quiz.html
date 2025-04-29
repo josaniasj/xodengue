@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo | Combate à Dengue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Combate à Dengue - Jogo</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sintomas.html">Sintomas</a></li>
+                    <li><a href="prevencao.html">Prevenção</a></li>
+                    <li><a href="quiz.html" class="active">Quiz</a></li>
+                    <li><a href="radar-aedes.html">Radar Aedes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+   <main>
+  <section class="info">
+    <div class="container">
+      <h2>Desafie-se no combate à dengue</h2>
+
+      <div class="board-container">
+        <div id="board"></div>
+      </div>
+
+      <div id="questionOverlay" class="overlay hidden">
+        <div class="question-box">
+          <p id="questionText"></p>
+          <div id="answers" class="answers"></div>
+        </div>
+      </div>
+
+      <div class="score-board">
+        <p>Pontos: <span id="score">0</span> | Recorde: <span id="record">0</span></p>
+      </div>
+    </div>
+  </section>
+</main>
+<audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+<audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/boing.ogg"></audio>
+<audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+<audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/boing.ogg"></audio>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Combate à Dengue. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
